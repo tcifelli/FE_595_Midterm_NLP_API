@@ -9,6 +9,7 @@ def initNLTK():
     nltk.download('punkt')
     nltk.download('stopwords')
     nltk.download('gutenberg')
+    nltk.download('averaged_perceptron_tagger')
 
 def func1(text):
     return 1
