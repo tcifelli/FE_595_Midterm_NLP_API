@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, json
 from werkzeug.exceptions import BadRequest, HTTPException
 import NLPMethods
+import Templates
 app = Flask(__name__)
 
 NLPMethods.initNLTK()
@@ -19,7 +20,7 @@ funcDict = {
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    return render_template("Templates/home.html")
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
