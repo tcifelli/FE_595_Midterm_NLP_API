@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, json
 from werkzeug.exceptions import BadRequest, HTTPException
 import NLPMethods
 import os
-app = Flask(__name__)
+APP_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_PATH = os.path.join(APP_PATH, 'Templates/')
+app = Flask(__name__, template_folder=TEMPLATE_PATH)
 
 NLPMethods.initNLTK()
 
@@ -20,7 +22,7 @@ funcDict = {
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template(os.path.abspath(os.getcwd()) + "/Templates/home.html")
+    return render_template("home.html")
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
