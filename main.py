@@ -4,6 +4,7 @@ import NLPMethods
 import os
 APP_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_PATH = os.path.join(APP_PATH, 'Templates/')
+print(TEMPLATE_PATH)
 app = Flask(__name__, template_folder=TEMPLATE_PATH)
 
 NLPMethods.initNLTK()
