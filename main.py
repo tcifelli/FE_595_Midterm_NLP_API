@@ -20,9 +20,7 @@ funcDict = {
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    path = os.path.dirname(os.path.realpath('main.py')) + "/Templates/home.html"
-    print(path)
-    return render_template(path)
+    return render_template('home.html')
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
