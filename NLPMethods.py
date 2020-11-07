@@ -74,9 +74,9 @@ def MostCommonPOS(self):
     #print("Most common", n, "adjectives:", Counter(adjectives).most_common(n))
     #print("Most common", n, "verbs:", Counter(verbs).most_common(n))
 
-    return {'mostCommonNoun': Counter(nouns).most_common(n),
-            'mostCommonAdjective': Counter(adjectives).most_common(n),
-            'mostCommonVerb': Counter(verbs).most_common(n)}
+    return {'mostCommonNoun': Counter(nouns).most_common(n)[0][0],
+            'mostCommonAdjective': Counter(adjectives).most_common(n)[0][0],
+            'mostCommonVerb': Counter(verbs).most_common(n)[0][0]}
 
 def countwords(inputs):
     # Counts the number of words and characters in the string
