@@ -14,7 +14,7 @@ funcDict = {
     'language': NLPMethods.findlanguage,
     'longestAndShortestWords': NLPMethods.longshort,
     'uniqueWordCount': NLPMethods.findnumofunique,
-    'func8': NLPMethods.func8
+    'mostCommonWordsByPOS': NLPMethods.MostCommonPOS
 }
 
 @app.route('/', methods=['GET', 'POST'])
@@ -41,7 +41,7 @@ def query():
         'language': request.args.get('language'),
         'longestAndShortestWords': request.args.get('longestAndShortestWords'),
         'uniqueWordCount': request.args.get('uniqueWordCount'),
-        'arg8': request.args.get('arg8')
+        'mostCommonWordsByPOS': request.args.get('mostCommonWordsByPOS')
     }
 
     cleanedArgs = [arg if arg is not None else False for arg in args.values()]

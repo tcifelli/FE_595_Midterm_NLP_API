@@ -62,6 +62,22 @@ def NumofPOS(self):
 
     return counts
 
+def MostCommonPOS(self):
+    n = 1
+    stop_words = set(stopwords.words('english'))
+    tokenized = word_tokenize(self)
+    filtered = [word for word in tokenized if word not in stop_words]
+    nouns = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'N'])
+    adjectives = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'J'])
+    verbs = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'V'])
+    #print("Most common", n, "nouns:", Counter(nouns).most_common(n))
+    #print("Most common", n, "adjectives:", Counter(adjectives).most_common(n))
+    #print("Most common", n, "verbs:", Counter(verbs).most_common(n))
+
+    return {'mostCommonNoun': Counter(nouns).most_common(n),
+            'mostCommonAdjective': Counter(adjectives).most_common(n),
+            'mostCommonVerb': Counter(verbs).most_common(n)}
+
 def countwords(inputs):
     # Counts the number of words and characters in the string
     # https://www.codevscolor.com/python-count-words-characters-string
