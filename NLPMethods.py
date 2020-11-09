@@ -70,7 +70,8 @@ def countwords(inputs):
     #print("Total Words : {}".format(word_count))
     #print("Total Special Characters : {}".format(char_count))
 
-    return {'wordCount': word_count, 'specialCharacters': char_count}
+    #return {'wordCount': word_count, 'specialCharacters': char_count}
+    return word_count
 
 def findlanguage(inputs):
     # Uses Textblob to find the language of the inputted text
