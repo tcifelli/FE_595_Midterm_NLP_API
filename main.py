@@ -33,6 +33,9 @@ def query():
     #modified from: https://stackoverflow.com/questions/5843518/remove-all-special-characters-punctuation-and-spaces-from-string
     text = ''.join(e for e in rawText if e.isalnum() or e == ' ')
 
+    if text == "" or text.isspace():
+        raise BadRequest("Input text must contain alphanumeric characters")
+
     args = {
         'sentiment': request.args.get('sentiment'),
         'commonWords': request.args.get('commonWords'),
