@@ -26,8 +26,14 @@
     <li>
         append any of the above arguments in the form '&functionName=True'
         <ul>
-            <li>if no function arguments are specified, or if all specified arguments are False,
+            <li>if no function arguments are specified, or if all function arguments are anything other than 'True',
                 all eight functions will be run</li>
+        </ul>
+    </li>
+    <li>request results are returned as a JSON dictionary alongside the version of the input text
+         passed to the functions
+        <ul>
+            <li>to help prevent errors input text is stripped of all non-alphanumeric characters</li>
         </ul>
     </li>
 </ol>
