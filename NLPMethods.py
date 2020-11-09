@@ -50,9 +50,9 @@ def MostCommonPOS(self):
     nouns = ([word for (word, pos) in tagged if pos[0] == 'N'])
     adjectives = ([word for (word, pos) in tagged if pos[0] == 'J'])
     verbs = ([word for (word, pos) in tagged if pos[0] == 'V'])
-    print("Most common noun:", Counter(nouns).most_common(1))
-    print("Most common adjective:", Counter(adjectives).most_common(1))
-    print("Most common verb:", Counter(verbs).most_common(1))
+    #print("Most common noun:", Counter(nouns).most_common(1))
+    #print("Most common adjective:", Counter(adjectives).most_common(1))
+    #print("Most common verb:", Counter(verbs).most_common(1))
 
     return {'mostCommonNoun': Counter(nouns).most_common(1)[0][0] if Counter(nouns).most_common(1) != [] else None,
             'mostCommonAdjective': Counter(adjectives).most_common(1)[0][0] if Counter(adjectives).most_common(1) != [] else None,
