@@ -1,6 +1,7 @@
 import nltk
+from nltk import pos_tag
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.tokenize import word_tokenize
 from collections import Counter
 from textblob import TextBlob #use to determine the language of the string
 
@@ -10,30 +11,6 @@ def initNLTK():
     nltk.download('stopwords')
     nltk.download('gutenberg')
     nltk.download('averaged_perceptron_tagger')
-
-def func1(text):
-    return 1
-
-def func2(text):
-    return 2
-
-def func3(text):
-    return 3
-
-def func4(text):
-    return 4
-
-def func5(text):
-    return 5
-
-def func6(text):
-    return 6
-
-def func7(text):
-    return 7
-
-def func8(text):
-    return 8
 
 def getSentiment(text):
     return TextBlob(text).sentiment.polarity
@@ -51,32 +28,35 @@ def getMostCommonWords(text):
 
 def NumofPOS(self):
     stop_words = set(stopwords.words('english'))
-    tokenized = sent_tokenize(self)
-    tagged = []
-    for i in tokenized:
-        wordslist = nltk.word_tokenize(i)
-        wordslist = [w for w in wordslist if not w in stop_words]
-        tagged += nltk.pos_tag(wordslist)
+    word_tokens = word_tokenize(self)
+    filtered_sentence = []
+    for w in word_tokens:
+        if w not in stop_words:
+            filtered_sentence.append(w)
+    tagged = pos_tag(filtered_sentence)
     counts = Counter(tag for word, tag in tagged)
     #print(counts)
 
     return counts
 
 def MostCommonPOS(self):
-    n = 1
     stop_words = set(stopwords.words('english'))
-    tokenized = word_tokenize(self)
-    filtered = [word for word in tokenized if word not in stop_words]
-    nouns = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'N'])
-    adjectives = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'J'])
-    verbs = ([word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(str(filtered))) if pos[0] == 'V'])
-    print("Most common", n, "nouns:", Counter(nouns).most_common(n))
-    print("Most common", n, "adjectives:", Counter(adjectives).most_common(n))
-    print("Most common", n, "verbs:", Counter(verbs).most_common(n))
+    word_tokens = word_tokenize(self)
+    filtered_sentence = []
+    for w in word_tokens:
+        if w not in stop_words:
+            filtered_sentence.append(w)
+    tagged = pos_tag(filtered_sentence)
+    nouns = ([word for (word, pos) in tagged if pos[0] == 'N'])
+    adjectives = ([word for (word, pos) in tagged if pos[0] == 'J'])
+    verbs = ([word for (word, pos) in tagged if pos[0] == 'V'])
+    print("Most common noun:", Counter(nouns).most_common(1))
+    print("Most common adjective:", Counter(adjectives).most_common(1))
+    print("Most common verb:", Counter(verbs).most_common(1))
 
-    return {'mostCommonNoun': Counter(nouns).most_common(n)[0][0] if Counter(nouns).most_common(n)[0][0] is not [] else None,
-            'mostCommonAdjective': Counter(adjectives).most_common(n)[0][0] if Counter(nouns).most_common(n)[0][0] is not [] else None,
-            'mostCommonVerb': Counter(verbs).most_common(n)[0][0] if Counter(nouns).most_common(n)[0][0] is not [] else None}
+    return {'mostCommonNoun': Counter(nouns).most_common(1)[0][0] if Counter(nouns).most_common(1)[0][0] is not [] else None,
+            'mostCommonAdjective': Counter(adjectives).most_common(1)[0][0] if Counter(nouns).most_common(1)[0][0] is not [] else None,
+            'mostCommonVerb': Counter(verbs).most_common(1)[0][0] if Counter(nouns).most_common(1)[0][0] is not [] else None}
 
 def countwords(inputs):
     # Counts the number of words and characters in the string

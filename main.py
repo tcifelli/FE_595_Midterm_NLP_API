@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, json
-from werkzeug.exceptions import BadRequest, HTTPException
+from flask import Flask, render_template, request
+from werkzeug.exceptions import BadRequest
 import NLPMethods
-import os
+
 app = Flask(__name__)
 
 NLPMethods.initNLTK()
